@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷速 · 信息调度与内容分发</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #fbfbfa;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+            color: #1e1d1b;
+            line-height: 1.75;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.25rem;
+        }
+        .container {
+            max-width: 720px;
+            width: 100%;
+        }
+        /* hero 区 — 极简标题 */
+        .hero {
+            border-bottom: 1px solid #e9e7e4;
+            padding-bottom: 3rem;
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 550;
+            letter-spacing: -0.01em;
+            color: #11100e;
+            margin-bottom: 0.5rem;
+        }
+        .hero .subhead {
+            font-size: 1rem;
+            color: #6f6b66;
+            font-weight: 380;
+            max-width: 48ch;
+            margin-top: 0.35rem;
+            border-left: 3px solid #d1cdc7;
+            padding-left: 1.2rem;
+        }
+        /* 正文卡片式排版 */
+        .content-block {
+            margin-bottom: 2.8rem;
+        }
+        .content-block h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: #191816;
+            border-bottom: 1px dashed #ddd9d3;
+            padding-bottom: 0.2rem;
+        }
+        .content-block p {
+            margin-bottom: 1.25rem;
+            font-size: 1.025rem;
+        }
+        .quote-box {
+            background: #f4f3f0;
+            padding: 1.25rem 1.5rem;
+            border-radius: 0;
+            border-left: 6px solid #b8b1a8;
+            margin: 1.5rem 0 2rem 0;
+            font-size: 0.975rem;
+            color: #3c3834;
+        }
+        .inline-link {
+            color: #28625e;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 0.5px;
+            font-weight: 450;
+            transition: background 0.15s;
+        }
+        .inline-link:hover {
+            background: #e1e6e3;
+        }
+        .faq-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e7e4df;
+        }
+        .faq-item h3 {
+            font-size: 1.06rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            color: #1f1c18;
+        }
+        .faq-item p {
+            font-size: 0.95rem;
+            color: #53504b;
+            margin-bottom: 0.3rem;
+        }
+        .visit-note {
+            margin-top: 3rem;
+            padding: 1.2rem 0;
+            font-size: 0.95rem;
+            color: #5b5751;
+            border-top: 1px solid #e3dfd9;
+            text-align: center;
+        }
+        .visit-note a {
+            color: #1d3e3c;
+            text-decoration: none;
+            border-bottom: 1px dotted #aca59d;
+        }
+        .visit-note a:hover {
+            border-bottom: 1px solid #1d3e3c;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #edebe7;
+            margin: 2.5rem 0 1rem 0;
+        }
+        @media (max-width: 520px) {
+            body {
+                padding: 1.25rem 1rem;
+            }
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .content-block h2 {
+                font-size: 1.3rem;
+            }
+            .quote-box {
+                padding: 1rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>调度·分发·雷速</h1>
+            <div class="subhead">从信息触达的效率出发，理解内容与链路的关系。</div>
+        </div>
+
+        <div class="content-block">
+            <h2>一个关键词背后的逻辑</h2>
+            <p>在内容传播的链条里，“雷速”不只是名义上的标识，它指向的是数据流动的节奏与可靠性。无论是资讯推送、资源同步，还是多节点间的应答，核心始终是<strong>低延迟与持续在线</strong>。这个站点的定位，正是围绕这一基础事实展开——让信息在正确的时间出现在需要的位置。</p>
+            <p>很多人关注的是“多快”，但真正决定体验的往往是“是否稳定”。在分布式场景下，单点延迟下降 100 毫秒或许不难，难的是在负载波动、网络抖动时依然保持一致的响应。这也是许多技术方案反复验证的命题。</p>
+        </div>
+
+        <div class="content-block">
+            <h2>从链路到内容</h2>
+            <p>如果仔细观察，当前大多数内容型服务的瓶颈并不在存储或计算，而在<strong>分发路径的合理性</strong>。一个请求从客户端发出，经过域名解析、回源、缓存、渲染，每个环节都可能成为衰减点。<a href="https://cn-leis.com" class="inline-link">雷速</a>所关注的范围，恰好覆盖了这些环节的协调与优化——它并非单一工具，而是一套围绕“传递效率”设计的信息结构。</p>
+            <p>举个例子，一段动态生成的数据，如果每次请求都重复计算全量内容，既浪费资源也增加等待；而合理的分层与预加载策略，能大幅减少不必要的开销。这类思路在许多实际项目中已被验证有效，站点所做的更多是<strong>整理、归纳与呈现</strong>。</p>
+        </div>
+
+        <div class="quote-box">
+            <p>“信息本身没有价值，流动起来才有。而流动的质量，取决于调度者对路径的理解。” —— 这是站点内容中常被引用的一句话，也大致说明了其出发点。</p>
+        </div>
+
+        <div class="content-block">
+            <h2>场景与适应性</h2>
+            <p>在不同类型的应用里，对“及时”的定义并不相同。对于实时协作工具，延迟超过 200 毫秒就可能被感知；而对于内容聚合页面，秒级加载在多数情况下已经合格。雷速讨论的粒度更偏向<strong>架构层面的选择</strong>：什么时候使用预取，什么时候依赖缓存，不同读写比例下的策略差异。这些内容通常以说明文、对比表、配置示例的形式呈现，适合需要自己搭建或调整服务的人参考。</p>
+            <p>此外，站点也关注边缘节点与源站之间的数据一致性模型。在弱一致场景中，速度可以做到极致；在强一致场景中，则必须引入确认与回滚机制。如何平衡，是每篇文章试图拆解的问题。</p>
+        </div>
+
+        <div class="faq-summary">
+            <div class="faq-item">
+                <h3>为什么站点叫“雷速”？</h3>
+                <p>名称源自对响应速度与可靠性的双重指向。不是夸张，而是直接对应调度行为中的两个特征：快且持续。</p>
+            </div>
+            <div class="faq-item">
+                <h3>内容偏向技术还是偏向产品？</h3>
+                <p>更多是技术侧的说明与整理，但会尽量用清晰的语言描述，避免过度依赖术语。适合有一定基础、希望理解原理的读者。</p>
+            </div>
+            <div class="faq-item">
+                <h3>是否有实践案例或配置参考？</h3>
+                <p>是的，部分文章会附带简化的流程说明与伪代码/配置片段，帮助理解而非直接复制生产环境。</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="visit-note">
+            <p>如果你对信息调度的设计思路感兴趣，可以移步 <a href="https://cn-leis.com">雷速</a> 进一步了解相关内容。</p>
+        </div>
+    </div>
+</body>
+</html>
