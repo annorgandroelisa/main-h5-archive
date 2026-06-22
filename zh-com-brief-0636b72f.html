@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>资料索引 · 雷速体育知识库</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f4f9fc;
+      color: #1d2c3a;
+      line-height: 1.6;
+      padding: 24px 16px 40px;
+    }
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* 标题区与目录感网格 */
+    .page-header {
+      margin-bottom: 32px;
+    }
+    .page-header h1 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #0b3b4a;
+      border-left: 5px solid #1c9e8f;
+      padding-left: 16px;
+      margin-bottom: 8px;
+    }
+    .page-header .sub {
+      color: #3a5e6b;
+      font-size: 0.98rem;
+      padding-left: 21px;
+      border-left: 5px solid transparent;
+    }
+
+    /* 网格卡片 —— 目录感布局 */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    @media (min-width: 560px) {
+      .grid-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 820px) {
+      .grid-cards { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 22px 20px 20px;
+      box-shadow: 0 4px 12px rgba(0, 50, 60, 0.06);
+      transition: box-shadow 0.2s, transform 0.15s;
+      border: 1px solid #d7e9ed;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      box-shadow: 0 8px 22px rgba(0, 80, 90, 0.10);
+      transform: translateY(-2px);
+      border-color: #9bcbd2;
+    }
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #0b4c4a;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card-title::before {
+      content: "📋";
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #2a444e;
+      margin-bottom: 6px;
+      flex: 1;
+    }
+    .card .meta-tag {
+      display: inline-block;
+      background: #ddf1ed;
+      color: #0a5c56;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 2px 12px;
+      border-radius: 30px;
+      margin-top: 10px;
+      align-self: flex-start;
+    }
+
+    /* 说明区 + 提示区 双栏 */
+    .info-duo {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    @media (min-width: 640px) {
+      .info-duo { flex-direction: row; }
+      .info-duo > * { flex: 1; }
+    }
+
+    .box {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 22px 22px 24px;
+      border: 1px solid #cfe2e8;
+      box-shadow: 0 2px 8px rgba(0, 40, 50, 0.04);
+    }
+    .box h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #054d4b;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .box h2 span { background: #1c9e8f; color: white; font-size: 0.9rem; border-radius: 30px; padding: 0 12px; margin-left: 6px; }
+    .box p, .box li {
+      font-size: 0.95rem;
+      color: #1f3a44;
+      margin-bottom: 6px;
+    }
+    .box ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .box li {
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .box li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #1c9e8f;
+      font-weight: 600;
+    }
+
+    .tip-box {
+      background: #e2f3f0;
+      border-left: 6px solid #0b8f7c;
+    }
+
+    /* 相关信息区：FAQ 摘要风格 */
+    .faq-summary {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 24px 22px 16px;
+      margin-bottom: 36px;
+      border: 1px solid #cee3e7;
+    }
+    .faq-summary h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #054d4b;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #d4eaec;
+      padding-bottom: 8px;
+    }
+    .faq-item {
+      margin-bottom: 16px;
+    }
+    .faq-item strong {
+      display: block;
+      font-weight: 600;
+      color: #07564e;
+      margin-bottom: 2px;
+      font-size: 0.98rem;
+    }
+    .faq-item p {
+      font-size: 0.92rem;
+      color: #2a4a55;
+      padding-left: 6px;
+      border-left: 3px solid #b2d6d0;
+      padding-left: 12px;
+    }
+
+    /* 内嵌链接样式 */
+    a {
+      color: #15786b;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #89c2b7;
+      transition: border 0.15s;
+    }
+    a:hover {
+      border-bottom: 2px solid #0b695d;
+      color: #084f45;
+    }
+    .attribution {
+      font-size: 0.85rem;
+      color: #4b6a75;
+      margin-top: 28px;
+      text-align: center;
+      border-top: 1px solid #cbdde2;
+      padding-top: 22px;
+    }
+
+    /* 移动端细节 */
+    @media (max-width: 400px) {
+      .page-header h1 { font-size: 1.6rem; }
+      .card { padding: 18px 15px; }
+      .box { padding: 18px; }
+    }
+
+    /* 极简辅助 */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page-header">
+    <h1>资料索引 · 知识库</h1>
+    <div class="sub">围绕信息整理与体育内容检索，汇聚实用参考</div>
+  </header>
+
+  <!-- 网格卡片 —— 目录感布局 -->
+  <div class="grid-cards">
+    <div class="card">
+      <div class="card-title">数据与赛事</div>
+      <p>赛季时间表、积分走势、历史交锋记录…… 从联赛到杯赛，基础数据归类整理，便于横向对比与趋势观察。</p>
+      <span class="meta-tag">6 个归类</span>
+    </div>
+    <div class="card">
+      <div class="card-title">球队与选手</div>
+      <p>阵容变动、伤情记录、近期状态、战术习惯。按队伍与个人建立索引卡片，缩小查找范围。</p>
+      <span class="meta-tag">索引标签 12+</span>
+    </div>
+    <div class="card">
+      <div class="card-title">动态与资讯</div>
+      <p>赛前发布会要点、赛后摘要、转会传闻核实。聚合短讯与长文，保留出处与时间戳。</p>
+      <span class="meta-tag">更新至本月</span>
+    </div>
+    <div class="card">
+      <div class="card-title">术语与规则</div>
+      <p>竞赛规程、常见战术名词、裁判手势说明、数据统计口径。减少信息误读，方便新读者快速融入。</p>
+      <span class="meta-tag">词条 40+</span>
+    </div>
+    <div class="card">
+      <div class="card-title">历史档案</div>
+      <p>经典赛季复盘、里程碑事件、纪录列表。以时间线或专题形式编排，提供参考背景。</p>
+      <span class="meta-tag">专题 10 个</span>
+    </div>
+    <div class="card">
+      <div class="card-title">整理工具</div>
+      <p>表格模板、自定义筛选说明、收藏夹分类建议。帮助个人建立自己的体育资料体系。</p>
+      <span class="meta-tag">使用指引</span>
+    </div>
+  </div>
+
+  <!-- 说明区 + 提示区 -->
+  <div class="info-duo">
+    <div class="box">
+      <h2>📌 说明 · 索引思路</h2>
+      <p>这个知识库以「资料整理」为切入点，不追求即时播报，而是把分散的信息结构化。每一个卡片对应一个主题分类，内部按时间、重要程度或逻辑关系排列。你可以把它当作体育信息的参考目录，按需深入。</p>
+      <p>常用做法：先通过卡片定位大方向，再借助链接跳转到更详细的页面。例如关于赛事数据，可以直接在 <a href="https://zh-com-leisu.com">雷速体育</a> 平台内找到对应的赛季数据库。我们鼓励使用者建立自己的笔记对照。</p>
+    </div>
+    <div class="box tip-box">
+      <h2>💡 提示 · 使用方式</h2>
+      <ul>
+        <li>如果你对某支球队近况有疑问，优先查看「球队与选手」卡片下的更新记录。</li>
+        <li>术语与规则部分适合赛前快速查阅，减少因规则不熟带来的困惑。</li>
+        <li>历史档案中的内容往往能帮你在讨论时提供可靠依据。</li>
+        <li>所有索引都指向公开可查的信息源，部分深度内容可借助 <a href="https://zh-com-leisu.com">雷速体育</a> 进一步阅读原文。</li>
+        <li>建议每周抽一点时间更新自己的收藏夹，让资料库保持活力。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 / 相关信息区 -->
+  <div class="faq-summary">
+    <h2>❓ 常见索引问题 · 摘要</h2>
+    <div class="faq-item">
+      <strong>怎样快速找到某场具体比赛的数据？</strong>
+      <p>在「数据与赛事」分类下按联赛名称查找，大部分焦点比赛配有单独的摘要页。若需要更详细的实况统计，可前往 <a href="https://zh-com-leisu.com">雷速体育</a> 的赛事中心筛选。</p>
+    </div>
+    <div class="faq-item">
+      <strong>索引是否包含历史赛季的全部内容？</strong>
+      <p>主要收录最近 5 个完整赛季以及具有特殊意义的经典赛季。更早的记录会在「历史档案」中以专题形式呈现，未覆盖的部分可尝试站内搜索。</p>
+    </div>
+    <div class="faq-item">
+      <strong>如何判断信息的更新日期？</strong>
+      <p>每个分类卡片右上角或底部会标注最近一次修订月份，具体文档内也包含时间戳。建议优先采用标注「更新至本月」的卡片。</p>
+    </div>
+    <div class="faq-item">
+      <strong>我可以贡献自己整理的资料吗？</strong>
+      <p>目前知识库以官方编辑维护为主，但欢迎通过邮件提供勘误或补充建议，我们会在下次修订时标注参考来源。</p>
+    </div>
+  </div>
+
+  <div class="attribution">
+    <span>资料索引 · 内容持续整理中 — 关于更多体育信息，可参考 <a href="https://zh-com-leisu.com">雷速体育</a> 的公开页面。</span>
+  </div>
+
+</div>
+</body>
+</html>
